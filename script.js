@@ -1,0 +1,134 @@
+// script.js
+document.addEventListener('DOMContentLoaded', () => {
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    updateCartCount();
+
+    // Products data
+    const products = [
+        { id: 1, name: 'Gaming Keyboard', price: 99.99, category: 'keyboards', rating: 4.5, image: 'https://placehold.co/300x200?text=Gaming+Keyboard' },
+        { id: 2, name: 'Gaming Mouse', price: 49.99, category: 'mice', rating: 4.2, image: 'https://placehold.co/300x200?text=Gaming+Mouse' },
+        { id: 3, name: 'Headset', price: 129.99, category: 'headsets', rating: 4.7, image: 'https://placehold.co/300x200?text=Headset' },
+        { id: 4, name: 'Mousepad', price: 19.99, category: 'mousepads', rating: 4.0, image: 'https://placehold.co/300x200?text=Mousepad' },
+        { id: 5, name: 'Cooling Fan', price: 29.99, category: 'fans', rating: 4.3, image: 'https://placehold.co/300x200?text=Cooling+Fan' },
+    ];
+
+    // Add to cart buttons
+    document.querySelectorAll('.add-to-cart').forEach(button => {
+        button.addEventListener('click', (e) => {
+            const id = parseInt(e.target.dataset.id);
+            const name = e.target.dataset.name;
+            const price = parseFloat(e.target.dataset.price);
+            addToCart({ id, name, price });
+        });
+    });
+
+    // Shop page specific
+    if (document.getElementById('product-grid')) {
+        loadProducts(products);
+
+        // Filters
+        document.getElementById('category-filter').addEventListener('change', filterProducts);
+        document.getElementById('price-filter').addEventListener('change', filterProducts);
+        document.getElementById('rating-filter').addEventListener('change', filterProducts);
+
+        function filterProducts() {
+            const category = document.getElementById('category-filter').value;
+            const price = document.getElementById('price-filter').value;
+            const rating = document.getElementById('rating-filter').value;
+
+            let filtered = products;
+
+            if (category) filtered = filtered.filter(p => p.category === category);
+
+            if (price) {
+                if (price === '0-50') filtered = filtered.filter(p => p.price <= 50);
+                else if (price === '50-100') filtered = filtered.filter(p => p.price > 50 && p.price <= 100);
+                else if (price === '100+') filtered = filtered.filter(p => p.price > 100);
+            }
+
+            if (rating) filtered = filtered.filter(p => p.rating >= parseInt(rating));
+
+            loadProducts(filtered);
+        }
+    }
+
+    // Cart page specific
+    if (document.getElementById('cart-items')) {
+        loadCart();
+    }
+
+    // Newsletter subscribe (dummy)
+    document.querySelector('.newsletter button')?.addEventListener('click', () => alert('Subscribed!'));
+
+    // Checkout (dummy)
+    document.getElementById('checkout-button')?.addEventListener('click', () => alert('Checkout complete!'));
+
+    function loadProducts(prods) {
+        const grid = document.getElementById('product-grid');
+        grid.innerHTML = '';
+        prods.forEach(product => {
+            const card = document.createElement('div');
+            card.classList.add('product-card');
+            card.innerHTML = `
+                <img src="${product.image}" alt="${product.name}">
+                <h3>${product.name}</h3>
+                <p>$${product.price.toFixed(2)}</p>
+                <button class="add-to-cart" data-id="${product.id}" data-name="${product.name}" data-price="${product.price}">Add to Cart</button>
+            `;
+            card.querySelector('.add-to-cart').addEventListener('click', (e) => {
+                const id = parseInt(e.target.dataset.id);
+                const name = e.target.dataset.name;
+                const price = parseFloat(e.target.dataset.price);
+                addToCart({ id, name, price });
+            });
+            grid.appendChild(card);
+        });
+    }
+
+    function addToCart(item) {
+        const existing = cart.find(i => i.id === item.id);
+        if (existing) {
+            existing.quantity += 1;
+        } else {
+            cart.push({ ...item, quantity: 1 });
+        }
+        localStorage.setItem('cart', JSON.stringify(cart));
+        updateCartCount();
+        alert(`${item.name} added to cart!`);
+    }
+
+    function updateCartCount() {
+        const count = cart.reduce((sum, item) => sum + item.quantity, 0);
+        document.querySelectorAll('#cart-count').forEach(el => el.textContent = count);
+    }
+
+    function loadCart() {
+        const itemsDiv = document.getElementById('cart-items');
+        itemsDiv.innerHTML = '';
+        let total = 0;
+        cart.forEach(item => {
+            const div = document.createElement('div');
+            div.classList.add('cart-item');
+            div.innerHTML = `
+                <span>${item.name} x ${item.quantity}</span>
+                <span>$${ (item.price * item.quantity).toFixed(2) }</span>
+                <button class="remove-item" data-id="${item.id}">Remove</button>
+            `;
+            div.querySelector('.remove-item').addEventListener('click', () => removeFromCart(item.id));
+            itemsDiv.appendChild(div);
+            total += item.price * item.quantity;
+        });
+        document.getElementById('cart-total').textContent = total.toFixed(2);
+    }
+
+    function removeFromCart(id) {
+        const index = cart.findIndex(i => i.id === id);
+        if (index > -1) {
+            cart[index].quantity -= 1;
+            if (cart[index].quantity <= 0) cart.splice(index, 1);
+        }
+        localStorage.setItem('cart', JSON.stringify(cart));
+        updateCartCount();
+        loadCart();
+    }
+});

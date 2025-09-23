@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shop - Voltec</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">Voltec</div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="shop.html">Shop</a></li>
+                <li class="dropdown">
+                    <a href="#">Categories</a>
+                    <div class="dropdown-content">
+                        <a href="shop.html?category=keyboards">Keyboards</a>
+                        <a href="shop.html?category=mice">Mice</a>
+                        <a href="shop.html?category=headsets">Headsets</a>
+                        <a href="shop.html?category=mousepads">Mousepads</a>
+                        <a href="shop.html?category=fans">Fans</a>
+                    </div>
+                </li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li><a href="cart.html" class="cart-link">Cart (<span id="cart-count">0</span>)</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="shop-section">
+        <h2>Shop Our Products</h2>
+        <div class="filters">
+            <select id="category-filter">
+                <option value="">All Categories</option>
+                <option value="keyboards">Keyboards</option>
+                <option value="mice">Mice</option>
+                <option value="headsets">Headsets</option>
+                <option value="mousepads">Mousepads</option>
+                <option value="fans">Fans</option>
+            </select>
+            <select id="price-filter">
+                <option value="">Price</option>
+                <option value="0-50">$0 - $50</option>
+                <option value="50-100">$50 - $100</option>
+                <option value="100+">$100+</option>
+            </select>
+            <select id="rating-filter">
+                <option value="">Rating</option>
+                <option value="4">4+ Stars</option>
+                <option value="3">3+ Stars</option>
+            </select>
+        </div>
+        <div class="product-grid" id="product-grid">
+            <!-- Products will be loaded via JS -->
+        </div>
+    </section>
+
+    <footer>
+        <div class="social-links">
+            <a href="#">Instagram</a>
+            <a href="#">TikTok</a>
+            <a href="#">YouTube</a>
+        </div>
+        <div class="newsletter">
+            <input type="email" placeholder="Subscribe to newsletter">
+            <button>Subscribe</button>
+        </div>
+        <p>&copy; 2025 Voltec. All rights reserved.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

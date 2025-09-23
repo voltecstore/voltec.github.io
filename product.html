@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gaming Keyboard - Voltec</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">Voltec</div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="shop.html">Shop</a></li>
+                <li class="dropdown">
+                    <a href="#">Categories</a>
+                    <div class="dropdown-content">
+                        <a href="shop.html?category=keyboards">Keyboards</a>
+                        <a href="shop.html?category=mice">Mice</a>
+                        <a href="shop.html?category=headsets">Headsets</a>
+                        <a href="shop.html?category=mousepads">Mousepads</a>
+                        <a href="shop.html?category=fans">Fans</a>
+                    </div>
+                </li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li><a href="cart.html" class="cart-link">Cart (<span id="cart-count">0</span>)</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="product-detail">
+        <div class="product-image">
+            <img src="https://placehold.co/600x400?text=Gaming+Keyboard" alt="Gaming Keyboard">
+        </div>
+        <div class="product-info">
+            <h1>Gaming Keyboard</h1>
+            <p>$99.99</p>
+            <p>Detailed description: Mechanical RGB keyboard with customizable lighting, anti-ghosting, and durable switches.</p>
+            <table class="specs-table">
+                <tr><th>Switch Type</th><td>Cherry MX Red</td></tr>
+                <tr><th>Lighting</th><td>RGB</td></tr>
+                <tr><th>Connectivity</th><td>USB</td></tr>
+            </table>
+            <button class="add-to-cart" data-id="1" data-name="Gaming Keyboard" data-price="99.99">Add to Cart</button>
+        </div>
+    </section>
+
+    <section class="reviews">
+        <h2>Reviews</h2>
+        <div class="review">
+            <p>"Great keyboard!" - User1</p>
+        </div>
+        <!-- More reviews -->
+    </section>
+
+    <section class="related-products">
+        <h2>Related Products</h2>
+        <div class="product-carousel">
+            <div class="product-card">
+                <img src="https://placehold.co/300x200?text=Gaming+Mouse" alt="Gaming Mouse">
+                <h3>Gaming Mouse</h3>
+                <p>$49.99</p>
+                <button class="add-to-cart" data-id="2" data-name="Gaming Mouse" data-price="49.99">Add to Cart</button>
+            </div>
+            <!-- More related -->
+        </div>
+    </section>
+
+    <footer>
+        <div class="social-links">
+            <a href="#">Instagram</a>
+            <a href="#">TikTok</a>
+            <a href="#">YouTube</a>
+        </div>
+        <div class="newsletter">
+            <input type="email" placeholder="Subscribe to newsletter">
+            <button>Subscribe</button>
+        </div>
+        <p>&copy; 2025 Voltec. All rights reserved.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
