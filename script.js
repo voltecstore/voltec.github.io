@@ -1,12 +1,11 @@
-// script.js
 document.addEventListener('DOMContentLoaded', () => {
     const cart = JSON.parse(localStorage.getItem('cart')) || [];
     updateCartCount();
 
     const products = [
-        { id: 1, name: 'Gaming Keyboard', price: 99.99, category: 'keyboards', rating: 4.5, image: 'https://placehold.co/300x200?text=Gaming+Keyboard' },
-        { id: 2, name: 'Gaming Mouse', price: 49.99, category: 'mice', rating: 4.2, image: 'https://placehold.co/300x200?text=Gaming+Mouse' },
-        { id: 3, name: 'Headset', price: 129.99, category: 'headsets', rating: 4.7, image: 'https://placehold.co/300x200?text=Headset' },
+        { id: 1, name: 'Gaming Klaviatura', price: 99.99, category: 'keyboards', rating: 4.5, image: 'https://placehold.co/300x200?text=Gaming+Keyboard' },
+        { id: 2, name: 'Gaming Siçan', price: 49.99, category: 'mice', rating: 4.2, image: 'https://placehold.co/300x200?text=Gaming+Mouse' },
+        { id: 3, name: 'Gaming Headset', price: 129.99, category: 'headsets', rating: 4.7, image: 'https://placehold.co/300x200?text=Headset' },
         { id: 4, name: 'Mousepad', price: 19.99, category: 'mousepads', rating: 4.0, image: 'https://placehold.co/300x200?text=Mousepad' },
         { id: 5, name: 'Cooling Fan', price: 29.99, category: 'fans', rating: 4.3, image: 'https://placehold.co/300x200?text=Cooling+Fan' },
     ];
@@ -53,7 +52,19 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     document.querySelector('.newsletter button')?.addEventListener('click', () => alert('Subscribed!'));
-    document.getElementById('checkout-button')?.addEventListener('click', () => alert('Checkout complete!'));
+    const checkoutButton = document.getElementById('checkout-button');
+    if (checkoutButton) {
+        checkoutButton.addEventListener('click', () => {
+            // WhatsApp numarasi (senin numaran: +994 050 547 46 78)
+            const phoneNumber = '+994505474678'; // Bosluklar ve tireler kaldirildi
+            // Varsayilan mesaj (istege bagli)
+            const message = encodeURIComponent('Səbətimdəki məhsullar üçün məlumat istəyirəm. Səbət: ' + JSON.stringify(cart));
+            // WhatsApp URL'si
+            const whatsappURL = `https://wa.me/${phoneNumber}?text=${message}`;
+            // Yonlendirme
+            window.location.href = whatsappURL;
+        });
+    }
 
     function loadProducts(prods) {
         const grid = document.getElementById('product-grid');
@@ -65,7 +76,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 <img src="${product.image}" alt="${product.name}">
                 <h3>${product.name}</h3>
                 <p>$${product.price.toFixed(2)}</p>
-                <button class="add-to-cart" data-id="${product.id}" data-name="${product.name}" data-price="${product.price}">Add to Cart</button>
+                <button class="add-to-cart" data-id="${product.id}" data-name="${product.name}" data-price="${product.price}">Səbətə Əlavə Et</button>
             `;
             card.querySelector('.add-to-cart').addEventListener('click', (e) => {
                 const id = parseInt(e.target.dataset.id);
@@ -83,7 +94,7 @@ document.addEventListener('DOMContentLoaded', () => {
         else cart.push({ ...item, quantity: 1 });
         localStorage.setItem('cart', JSON.stringify(cart));
         updateCartCount();
-        alert(`${item.name} added to cart!`);
+        alert(`${item.name} səbətə əlavə olundu!`);
     }
 
     function updateCartCount() {
