@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cart - Voltec</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <header>
@@ -15,18 +15,14 @@
                 <li><a href="index.html">Home</a></li>
                 <li><a href="shop.html">Shop</a></li>
                 <li class="dropdown">
-                    <a href="#">Categories</a>
-                    <div class="dropdown-content">
-                        <a href="shop.html?category=keyboards">Keyboards</a>
-                        <a href="shop.html?category=mice">Mice</a>
-                        <a href="shop.html?category=headsets">Headsets</a>
-                        <a href="shop.html?category=mousepads">Mousepads</a>
-                        <a href="shop.html?category=fans">Fans</a>
-                    </div>
                 </li>
                 <li><a href="#about">About</a></li>
                 <li><a href="#contact">Contact</a></li>
                 <li><a href="cart.html" class="cart-link">Cart (<span id="cart-count">0</span>)</a></li>
+                <li class="theme-switch">
+                    <input type="checkbox" id="theme-toggle-checkbox">
+                    <label for="theme-toggle-checkbox" class="toggle-label"></label>
+                </li>
             </ul>
         </nav>
     </header>
