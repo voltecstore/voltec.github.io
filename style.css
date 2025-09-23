@@ -1,58 +1,88 @@
 /* style.css */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap');
+
 :root {
-    --soft-blue: #66b3ff; /* Yumuşak mavi */
-    --pastel-purple: #cc99ff; /* Pastel lavanta moru */
-    --bg-color: #0a0a0a; /* Daha sıcak koyu gri */
-    --text-color: #f5f5f5; /* Yumuşak beyaz */
-    --card-bg: #1a1a1a; /* Kartlar için hafif gri */
+    /* Koyu Mod Varsayılan */
+    --dark-bg-color: #1c2526;
+    --dark-text-color: #e0e0e0;
+    --dark-card-bg: #2e3839;
+    --dark-primary: #a63e3e; /* Derin kırmızımsı kahve */
+    --dark-secondary: #4a704a; /* Zengin yeşil */
+
+    /* Açık Mod */
+    --light-bg-color: #f5f5f5;
+    --light-text-color: #333333;
+    --light-card-bg: #ffffff;
+    --light-primary: #8b2e2e; /* Daha açık kırmızımsı kahve */
+    --light-secondary: #3a5c3a; /* Daha açık yeşil */
 }
 
 body {
     margin: 0;
     padding: 0;
-    font-family: 'Orbitron', sans-serif;
-    background: var(--bg-color);
-    color: var(--text-color);
+    font-family: 'Montserrat', sans-serif;
+    background: var(--dark-bg-color);
+    color: var(--dark-text-color);
     line-height: 1.6;
-    overflow-x: hidden;
+    transition: all 0.3s ease;
+}
+
+body.light-mode {
+    background: var(--light-bg-color);
+    color: var(--light-text-color);
 }
 
 .navbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1.2rem 2rem;
-    background: rgba(10, 10, 10, 0.9);
+    padding: 1.5rem 2rem;
+    background: rgba(28, 37, 38, 0.95);
     position: sticky;
     top: 0;
     z-index: 100;
-    transition: all 0.3s ease-in-out;
+    transition: background 0.3s ease;
+}
+
+body.light-mode .navbar {
+    background: rgba(245, 245, 245, 0.95);
 }
 
 .logo {
-    font-size: 1.6rem;
-    font-weight: 700;
-    color: var(--soft-blue);
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: var(--dark-primary);
     letter-spacing: 1px;
+}
+
+body.light-mode .logo {
+    color: var(--light-primary);
 }
 
 .nav-links {
     list-style: none;
     display: flex;
-    gap: 1.8rem;
+    gap: 2rem;
 }
 
 .nav-links a {
-    color: var(--text-color);
+    color: var(--dark-text-color);
     text-decoration: none;
-    font-size: 1rem;
+    font-size: 1.1rem;
     transition: color 0.3s ease, transform 0.3s ease;
 }
 
+body.light-mode .nav-links a {
+    color: var(--light-text-color);
+}
+
 .nav-links a:hover {
-    color: var(--pastel-purple);
-    transform: translateY(-2px);
-    text-shadow: 0 0 8px var(--pastel-purple);
+    color: var(--dark-secondary);
+    transform: translateY(-1px);
+}
+
+body.light-mode .nav-links a:hover {
+    color: var(--light-secondary);
 }
 
 .dropdown {
@@ -62,14 +92,19 @@ body {
 .dropdown-content {
     display: none;
     position: absolute;
-    background: var(--card-bg);
+    background: var(--dark-card-bg);
     min-width: 180px;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
     z-index: 1;
-    border-radius: 8px;
-    transform: translateY(10px);
+    border-radius: 6px;
+    transform: translateY(8px);
     opacity: 0;
     transition: all 0.3s ease-in-out;
+}
+
+body.light-mode .dropdown-content {
+    background: var(--light-card-bg);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
 
 .dropdown:hover .dropdown-content {
@@ -79,15 +114,24 @@ body {
 }
 
 .dropdown-content a {
-    padding: 12px 16px;
+    padding: 10px 15px;
     display: block;
-    color: var(--text-color);
+    color: var(--dark-text-color);
     transition: background 0.3s ease;
 }
 
+body.light-mode .dropdown-content a {
+    color: var(--light-text-color);
+}
+
 .dropdown-content a:hover {
-    background: var(--soft-blue);
-    color: var(--bg-color);
+    background: var(--dark-primary);
+    color: var(--dark-text-color);
+}
+
+body.light-mode .dropdown-content a:hover {
+    background: var(--light-primary);
+    color: var(--light-text-color);
 }
 
 .hero {
@@ -95,49 +139,62 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    background: linear-gradient(to bottom, #1a1a1a, var(--bg-color));
+    background: linear-gradient(to bottom, #252f31, var(--dark-bg-color));
     text-align: center;
-    position: relative;
-    overflow: hidden;
+    padding: 0 1rem;
 }
 
-.hero-content {
-    animation: subtle-glow 3s ease-in-out infinite alternate;
-}
-
-@keyframes subtle-glow {
-    from { text-shadow: 0 0 5px var(--soft-blue), 0 0 10px rgba(102, 179, 255, 0.5); }
-    to { text-shadow: 0 0 10px var(--pastel-purple), 0 0 15px rgba(204, 153, 255, 0.5); }
+body.light-mode .hero {
+    background: linear-gradient(to bottom, #e0e0e0, var(--light-bg-color));
 }
 
 .logo-large {
-    font-size: 4.5rem;
-    color: var(--soft-blue);
+    font-size: 4rem;
+    color: var(--dark-primary);
     margin-bottom: 0.5rem;
+    font-weight: 600;
+}
+
+body.light-mode .logo-large {
+    color: var(--light-primary);
 }
 
 .slogan {
-    font-size: 2rem;
-    color: var(--pastel-purple);
+    font-size: 1.8rem;
+    color: var(--dark-secondary);
     margin-bottom: 1.5rem;
+    font-weight: 400;
+}
+
+body.light-mode .slogan {
+    color: var(--light-secondary);
 }
 
 .cta-button {
     padding: 1rem 2.5rem;
-    background: transparent;
-    border: 2px solid var(--soft-blue);
-    color: var(--text-color);
+    background: var(--dark-primary);
+    border: none;
+    color: var(--dark-text-color);
     text-decoration: none;
-    border-radius: 25px;
+    border-radius: 30px;
     font-weight: 600;
     transition: all 0.3s ease-in-out;
 }
 
+body.light-mode .cta-button {
+    background: var(--light-primary);
+    color: var(--light-text-color);
+}
+
 .cta-button:hover {
-    background: var(--soft-blue);
-    color: var(--bg-color);
-    box-shadow: 0 0 15px var(--soft-blue);
-    transform: translateY(-3px);
+    background: var(--dark-secondary);
+    transform: scale(1.05);
+    box-shadow: 0 5px 15px rgba(74, 112, 74, 0.3);
+}
+
+body.light-mode .cta-button:hover {
+    background: var(--light-secondary);
+    box-shadow: 0 5px 15px rgba(58, 92, 58, 0.3);
 }
 
 .featured-products, .shop-section, .product-detail, .reviews, .related-products, .about-section, .contact-section, .cart-section {
@@ -148,86 +205,115 @@ body {
 
 h2 {
     text-align: center;
-    color: var(--pastel-purple);
+    color: var(--dark-secondary);
     font-size: 2rem;
-    margin-bottom: 2.5rem;
-    letter-spacing: 1px;
+    margin-bottom: 2rem;
+}
+
+body.light-mode h2 {
+    color: var(--light-secondary);
 }
 
 .product-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 2rem;
+    gap: 1.5rem;
 }
 
 .product-card {
-    background: var(--card-bg);
+    background: var(--dark-card-bg);
     padding: 1.5rem;
     text-align: center;
-    border-radius: 12px;
-    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    border-radius: 8px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+body.light-mode .product-card {
+    background: var(--light-card-bg);
 }
 
 .product-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(102, 179, 255, 0.3);
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(166, 62, 62, 0.2);
+}
+
+body.light-mode .product-card:hover {
+    box-shadow: 0 5px 15px rgba(139, 46, 46, 0.2);
 }
 
 .product-card img {
     width: 100%;
     height: auto;
-    border-radius: 8px;
+    border-radius: 6px;
 }
 
 .add-to-cart {
-    background: var(--pastel-purple);
+    background: var(--dark-primary);
     border: none;
-    padding: 0.7rem 1.5rem;
-    color: var(--bg-color);
+    padding: 0.6rem 1.5rem;
+    color: var(--dark-text-color);
     cursor: pointer;
     border-radius: 20px;
     font-weight: 600;
     transition: all 0.3s ease-in-out;
 }
 
+body.light-mode .add-to-cart {
+    background: var(--light-primary);
+    color: var(--light-text-color);
+}
+
 .add-to-cart:hover {
-    background: var(--soft-blue);
-    box-shadow: 0 0 10px var(--soft-blue);
-    transform: translateY(-2px);
+    background: var(--dark-secondary);
+    transform: scale(1.05);
+}
+
+body.light-mode .add-to-cart:hover {
+    background: var(--light-secondary);
 }
 
 .filters {
     display: flex;
     gap: 1.5rem;
-    margin-bottom: 2.5rem;
+    margin-bottom: 2rem;
     justify-content: center;
 }
 
 .filters select {
-    background: var(--card-bg);
-    color: var(--text-color);
-    border: 1px solid var(--soft-blue);
-    padding: 0.7rem;
-    border-radius: 8px;
+    background: var(--dark-card-bg);
+    color: var(--dark-text-color);
+    border: 1px solid var(--dark-primary);
+    padding: 0.6rem;
+    border-radius: 6px;
     transition: border-color 0.3s ease;
 }
 
+body.light-mode .filters select {
+    background: var(--light-card-bg);
+    color: var(--light-text-color);
+    border-color: var(--light-primary);
+}
+
 .filters select:focus {
-    border-color: var(--pastel-purple);
+    border-color: var(--dark-secondary);
     outline: none;
+}
+
+body.light-mode .filters select:focus {
+    border-color: var(--light-secondary);
 }
 
 .product-detail {
     display: flex;
-    gap: 2.5rem;
+    gap: 2rem;
     align-items: flex-start;
 }
 
 .product-image img {
     width: 100%;
     max-width: 600px;
-    border-radius: 12px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
 
 .specs-table {
@@ -237,10 +323,15 @@ h2 {
 }
 
 .specs-table th, .specs-table td {
-    border: 1px solid var(--soft-blue);
-    padding: 0.7rem;
+    border: 1px solid var(--dark-primary);
+    padding: 0.6rem;
     text-align: left;
-    background: var(--card-bg);
+    background: var(--dark-card-bg);
+}
+
+body.light-mode .specs-table th, body.light-mode .specs-table td {
+    border-color: var(--light-primary);
+    background: var(--light-card-bg);
 }
 
 .product-carousel {
@@ -251,12 +342,16 @@ h2 {
 }
 
 .product-carousel::-webkit-scrollbar {
-    height: 8px;
+    height: 6px;
 }
 
 .product-carousel::-webkit-scrollbar-thumb {
-    background: var(--soft-blue);
-    border-radius: 8px;
+    background: var(--dark-primary);
+    border-radius: 6px;
+}
+
+body.light-mode .product-carousel::-webkit-scrollbar-thumb {
+    background: var(--light-primary);
 }
 
 .cart-section #cart-items {
@@ -266,54 +361,84 @@ h2 {
 }
 
 .cart-item {
-    background: var(--card-bg);
-    padding: 1.2rem;
+    background: var(--dark-card-bg);
+    padding: 1rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-radius: 8px;
+    border-radius: 6px;
     transition: all 0.3s ease;
 }
 
+body.light-mode .cart-item {
+    background: var(--light-card-bg);
+}
+
 .cart-item:hover {
-    box-shadow: 0 5px 15px rgba(102, 179, 255, 0.2);
+    box-shadow: 0 5px 15px rgba(166, 62, 62, 0.1);
+}
+
+body.light-mode .cart-item:hover {
+    box-shadow: 0 5px 15px rgba(139, 46, 46, 0.1);
 }
 
 #checkout-button {
-    background: var(--soft-blue);
+    background: var(--dark-primary);
     border: none;
     padding: 1rem;
-    color: var(--bg-color);
+    color: var(--dark-text-color);
     cursor: pointer;
     width: 100%;
     margin-top: 1.5rem;
-    border-radius: 25px;
+    border-radius: 30px;
     font-weight: 600;
     transition: all 0.3s ease-in-out;
 }
 
+body.light-mode #checkout-button {
+    background: var(--light-primary);
+    color: var(--light-text-color);
+}
+
 #checkout-button:hover {
-    background: var(--pastel-purple);
-    box-shadow: 0 0 15px var(--pastel-purple);
-    transform: translateY(-3px);
+    background: var(--dark-secondary);
+    transform: scale(1.05);
+    box-shadow: 0 5px 15px rgba(74, 112, 74, 0.3);
+}
+
+body.light-mode #checkout-button:hover {
+    background: var(--light-secondary);
+    box-shadow: 0 5px 15px rgba(58, 92, 58, 0.3);
 }
 
 footer {
-    background: var(--card-bg);
-    padding: 2.5rem;
+    background: var(--dark-card-bg);
+    padding: 2rem;
     text-align: center;
 }
 
+body.light-mode footer {
+    background: var(--light-card-bg);
+}
+
 .social-links a {
-    margin: 0 1.2rem;
-    color: var(--soft-blue);
+    margin: 0 1rem;
+    color: var(--dark-primary);
     text-decoration: none;
     transition: color 0.3s ease, transform 0.3s ease;
 }
 
+body.light-mode .social-links a {
+    color: var(--light-primary);
+}
+
 .social-links a:hover {
-    color: var(--pastel-purple);
-    transform: translateY(-2px);
+    color: var(--dark-secondary);
+    transform: translateY(-1px);
+}
+
+body.light-mode .social-links a:hover {
+    color: var(--light-secondary);
 }
 
 .newsletter {
@@ -321,26 +446,41 @@ footer {
 }
 
 .newsletter input {
-    background: var(--card-bg);
-    border: 1px solid var(--soft-blue);
-    padding: 0.7rem;
-    color: var(--text-color);
-    border-radius: 8px;
+    background: var(--dark-card-bg);
+    border: 1px solid var(--dark-primary);
+    padding: 0.6rem;
+    color: var(--dark-text-color);
+    border-radius: 6px;
     margin-right: 0.5rem;
 }
 
+body.light-mode .newsletter input {
+    background: var(--light-card-bg);
+    border-color: var(--light-primary);
+    color: var(--light-text-color);
+}
+
 .newsletter button {
-    background: var(--pastel-purple);
+    background: var(--dark-secondary);
     border: none;
-    padding: 0.7rem 1.5rem;
-    color: var(--bg-color);
-    border-radius: 8px;
+    padding: 0.6rem 1.5rem;
+    color: var(--dark-text-color);
+    border-radius: 6px;
     transition: all 0.3s ease-in-out;
 }
 
+body.light-mode .newsletter button {
+    background: var(--light-secondary);
+    color: var(--light-text-color);
+}
+
 .newsletter button:hover {
-    background: var(--soft-blue);
-    box-shadow: 0 0 10px var(--soft-blue);
+    background: var(--dark-primary);
+    transform: scale(1.05);
+}
+
+body.light-mode .newsletter button:hover {
+    background: var(--light-primary);
 }
 
 /* Responsive */
@@ -357,9 +497,77 @@ footer {
         flex-direction: column;
     }
     .logo-large {
-        font-size: 3rem;
+        font-size: 2.5rem;
     }
     .slogan {
-        font-size: 1.5rem;
+        font-size: 1.3rem;
     }
+}
+/* style.css */
+/* ... Önceki tüm stiller aynı, sadece tema switch kısmını değiştirin ... */
+
+/* Tema Switch Stili */
+.theme-switch {
+    display: flex;
+    align-items: center;
+}
+
+#theme-toggle-checkbox {
+    display: none;
+}
+
+.toggle-label {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 30px;
+    background-color: #000; /* Varsayılan dark bar rengi */
+    border-radius: 15px;
+    cursor: pointer;
+    transition: background-color 0.4s ease; /* Yumuşak bar rengi geçişi */
+}
+
+.toggle-label::before {
+    content: '🌙'; /* Varsayılan ay ikonu (dark) */
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    width: 24px;
+    height: 24px;
+    background-color: #fff;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 24px;
+    font-size: 16px;
+    transition: transform 0.4s ease, content 0.4s ease; /* Slider ve ikon geçişi */
+    box-sizing: border-box;
+}
+
+#theme-toggle-checkbox:checked + .toggle-label {
+    background-color: #ff8c00; /* Checked (light) bar rengi turuncu */
+}
+
+#theme-toggle-checkbox:checked + .toggle-label::before {
+    content: '☀️'; /* Checked (light) güneş ikonu */
+    transform: translateX(30px); /* Slider sağa hareket */
+}
+
+/* Light mode genel ayarları - varsayılan checked state'e göre */
+body.light-mode .toggle-label {
+    background-color: #ff8c00; /* Light modda bar turuncu (checked gibi) */
+}
+
+body.light-mode .toggle-label::before {
+    content: '☀️'; /* Light modda güneş (sağda) */
+    transform: translateX(30px); /* Varsayılan slider sağda */
+}
+
+/* Dark mode'a geçişte (un-checked) override */
+body.light-mode #theme-toggle-checkbox:not(:checked) + .toggle-label {
+    background-color: #000; /* Dark'a geçince bar siyah */
+}
+
+body.light-mode #theme-toggle-checkbox:not(:checked) + .toggle-label::before {
+    content: '🌙'; /* Dark'a geçince ay (solda) */
+    transform: translateX(0); /* Slider sola hareket */
 }
