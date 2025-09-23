@@ -3,7 +3,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const cart = JSON.parse(localStorage.getItem('cart')) || [];
     updateCartCount();
 
-    // Products data
     const products = [
         { id: 1, name: 'Gaming Keyboard', price: 99.99, category: 'keyboards', rating: 4.5, image: 'https://placehold.co/300x200?text=Gaming+Keyboard' },
         { id: 2, name: 'Gaming Mouse', price: 49.99, category: 'mice', rating: 4.2, image: 'https://placehold.co/300x200?text=Gaming+Mouse' },
@@ -12,7 +11,6 @@ document.addEventListener('DOMContentLoaded', () => {
         { id: 5, name: 'Cooling Fan', price: 29.99, category: 'fans', rating: 4.3, image: 'https://placehold.co/300x200?text=Cooling+Fan' },
     ];
 
-    // Add to cart buttons
     document.querySelectorAll('.add-to-cart').forEach(button => {
         button.addEventListener('click', (e) => {
             const id = parseInt(e.target.dataset.id);
@@ -22,11 +20,11 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Shop page specific
-    if (document.getElementById('product-grid')) {
+    const productGrid = document.getElementById('product-grid');
+    if (productGrid) {
         loadProducts(products);
+        console.log('Ürünler yüklendi');
 
-        // Filters
         document.getElementById('category-filter').addEventListener('change', filterProducts);
         document.getElementById('price-filter').addEventListener('change', filterProducts);
         document.getElementById('rating-filter').addEventListener('change', filterProducts);
@@ -39,28 +37,22 @@ document.addEventListener('DOMContentLoaded', () => {
             let filtered = products;
 
             if (category) filtered = filtered.filter(p => p.category === category);
-
             if (price) {
                 if (price === '0-50') filtered = filtered.filter(p => p.price <= 50);
                 else if (price === '50-100') filtered = filtered.filter(p => p.price > 50 && p.price <= 100);
                 else if (price === '100+') filtered = filtered.filter(p => p.price > 100);
             }
-
             if (rating) filtered = filtered.filter(p => p.rating >= parseInt(rating));
 
             loadProducts(filtered);
         }
     }
 
-    // Cart page specific
     if (document.getElementById('cart-items')) {
         loadCart();
     }
 
-    // Newsletter subscribe (dummy)
     document.querySelector('.newsletter button')?.addEventListener('click', () => alert('Subscribed!'));
-
-    // Checkout (dummy)
     document.getElementById('checkout-button')?.addEventListener('click', () => alert('Checkout complete!'));
 
     function loadProducts(prods) {
@@ -87,11 +79,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function addToCart(item) {
         const existing = cart.find(i => i.id === item.id);
-        if (existing) {
-            existing.quantity += 1;
-        } else {
-            cart.push({ ...item, quantity: 1 });
-        }
+        if (existing) existing.quantity += 1;
+        else cart.push({ ...item, quantity: 1 });
         localStorage.setItem('cart', JSON.stringify(cart));
         updateCartCount();
         alert(`${item.name} added to cart!`);
@@ -130,5 +119,29 @@ document.addEventListener('DOMContentLoaded', () => {
         localStorage.setItem('cart', JSON.stringify(cart));
         updateCartCount();
         loadCart();
+    }
+
+    // Tema geçişi (checkbox ile)
+    const themeCheckbox = document.getElementById('theme-toggle-checkbox');
+    if (themeCheckbox) {
+        console.log('Checkbox bulundu');
+        const currentTheme = localStorage.getItem('theme') || 'dark';
+        if (currentTheme === 'light') {
+            document.body.classList.add('light-mode');
+            themeCheckbox.checked = true;
+            console.log('Light mod aktif');
+        } else {
+            console.log('Dark mod aktif');
+        }
+
+        themeCheckbox.addEventListener('change', () => {
+            console.log('Checkbox değişti, checked:', themeCheckbox.checked);
+            document.body.classList.toggle('light-mode');
+            const theme = document.body.classList.contains('light-mode') ? 'light' : 'dark';
+            localStorage.setItem('theme', theme);
+            console.log('Yeni tema:', theme);
+        });
+    } else {
+        console.log('Checkbox bulunamadı!');
     }
 });
