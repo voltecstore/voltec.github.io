@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shop - Voltec</title>
+    <title>Voltec - Mağaza</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
@@ -12,13 +12,11 @@
         <nav class="navbar">
             <div class="logo">Voltec</div>
             <ul class="nav-links">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="shop.html">Shop</a></li>
-                <li class="dropdown">
-                </li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#contact">Contact</a></li>
-                <li><a href="cart.html" class="cart-link">Cart (<span id="cart-count">0</span>)</a></li>
+                <li><a href="index.html">Ev</a></li>
+                <li><a href="shop.html">Mağaza</a></li>
+                <li><a href="#about">Haqqımızda</a></li>
+                <li><a href="#contact">Əlaqə</a></li>
+                <li><a href="cart.html" class="cart-link">Səbət (<span id="cart-count">0</span>)</a></li>
                 <li class="theme-switch">
                     <input type="checkbox" id="theme-toggle-checkbox">
                     <label for="theme-toggle-checkbox" class="toggle-label"></label>
@@ -28,45 +26,51 @@
     </header>
 
     <section class="shop-section">
-        <h2>Shop Our Products</h2>
+        <h2>Mağaza</h2>
         <div class="filters">
             <select id="category-filter">
-                <option value="">All Categories</option>
-                <option value="keyboards">Keyboards</option>
-                <option value="mice">Mice</option>
-                <option value="headsets">Headsets</option>
-                <option value="mousepads">Mousepads</option>
-                <option value="fans">Fans</option>
+                <option value="">Kategoriya</option>
+                <option value="keyboards">Klaviatura</option>
+                <option value="mice">Sıçan</option>
+                <option value="headsets">Headset</option>
             </select>
             <select id="price-filter">
-                <option value="">Price</option>
-                <option value="0-50">$0 - $50</option>
-                <option value="50-100">$50 - $100</option>
-                <option value="100+">$100+</option>
+                <option value="">Qiymət</option>
+                <option value="0-85">0 ₼ - 85 ₼</option>
+                <option value="85-170">85 ₼ - 170 ₼</option>
+                <option value="170+">170 ₼+</option>
             </select>
             <select id="rating-filter">
-                <option value="">Rating</option>
-                <option value="4">4+ Stars</option>
-                <option value="3">3+ Stars</option>
+                <option value="">Reytinq</option>
+                <option value="4">4+ </option>
+                <option value="4.5">4.5+</option>
             </select>
         </div>
-        <div class="product-grid" id="product-grid">
-            <!-- Products will be loaded via JS -->
-        </div>
+        <div id="product-grid"></div>
     </section>
 
-    <footer>
-        <div class="social-links">
-            <a href="#">Instagram</a>
-            <a href="#">TikTok</a>
-            <a href="#">YouTube</a>
+    <!-- Ürün Detay Modal (index.html ile aynı) -->
+    <div id="product-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <div class="modal-gallery">
+                <img id="main-image" src="" alt="Product Image">
+                <div id="thumbnail-gallery" class="thumbnail-gallery"></div>
+            </div>
+            <div class="modal-video">
+                <video id="product-video" controls>
+                    <source id="video-source" src="" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+            <div class="modal-details">
+                <h3 id="modal-product-name"></h3>
+                <p id="modal-product-price"></p>
+                <p id="modal-product-description"></p>
+                <button id="add-to-cart-modal" class="add-to-cart">Səbətə Əlavə Et</button>
+            </div>
         </div>
-        <div class="newsletter">
-            <input type="email" placeholder="Subscribe to newsletter">
-            <button>Subscribe</button>
-        </div>
-        <p>&copy; 2025 Voltec. All rights reserved.</p>
-    </footer>
+    </div>
 
     <script src="script.js"></script>
 </body>
