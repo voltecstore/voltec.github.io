@@ -14,8 +14,7 @@
             <ul class="nav-links">
                 <li><a href="index.html">Ev</a></li>
                 <li><a href="shop.html">Mağaza</a></li>
-                <li class="dropdown">
-                </li>
+                <li class="dropdown"></li>
                 <li><a href="#about">Haqqımızda</a></li>
                 <li><a href="#contact">Əlaqə</a></li>
                 <li><a href="cart.html" class="cart-link">Səbət (<span id="cart-count">0</span>)</a></li>
@@ -36,25 +35,25 @@
     </section>
 
     <section class="featured-products">
-        <h2>Featured Products</h2>
-        <div class="product-grid">
+        <h2>Qabağa Çıxanlar</h2>
+        <div class="product-grid" id="product-grid">
             <div class="product-card">
-                <img src="https://placehold.co/300x200?text=Gaming+Keyboard" alt="Gaming Keyboard">
-                <h3>EWEADN Klaviatura</h3>
-                <p>25</p>
-                <button class="add-to-cart" data-id="1" data-name="Gaming Keyboard" data-price="99.99">Add to Cart</button>
+                <img src="https://m.media-amazon.com/images/I/61F1Y0iZdEL._AC_SL1500_.jpg" alt="Gaming Keyboard">
+                <h3>EWEADN F61 Gaming Klaviatura</h3>
+                <p>₼44.99</p>
+                <button class="add-to-cart" data-id="1" data-name="Gaming Keyboard" data-price="44.99">Səbətə Əlavə Et</button>
             </div>
             <div class="product-card">
                 <img src="https://placehold.co/300x200?text=Gaming+Mouse" alt="Gaming Mouse">
                 <h3>HKSJ X300 Kablolu Gaming Mouse</h3>
                 <p>₼24.99</p>
-                <button class="add-to-cart" data-id="2" data-name="Gaming Mouse" data-price="49.99">Add to Cart</button>
+                <button class="add-to-cart" data-id="2" data-name="Gaming Mouse" data-price="24.99">Səbətə Əlavə Et</button>
             </div>
             <div class="product-card">
                 <img src="https://placehold.co/300x200?text=Headset" alt="Headset">
                 <h3>LOGITECH G304 Kablosuz Gaming Mouse</h3>
                 <p>₼69.99</p>
-                <button class="add-to-cart" data-id="3" data-name="Headset" data-price="129.99">Add to Cart</button>
+                <button class="add-to-cart" data-id="3" data-name="Headset" data-price="69.99">Səbətə Əlavə Et</button>
             </div>
         </div>
     </section>
@@ -62,7 +61,7 @@
     <section id="about" class="about-section">
         <h2>VolTec Haqqında</h2>
         <p>Voltec, xaricdən Azərbaycana gətirilmiş ən yüksək keyfiyyətli və qiymətli kompyuter aksesuarlarını təklif edən kiçik ölçülü, yenilikçi bir e-commerce şirkətidir. Şirkət, 21 sentyabr 2025-ci ildə yaradılmışdır və öz müştərilərinə üstün keyfiyyətli məhsullar təqdim etmək məqsədi ilə fəaliyyət göstərir. Voltec, dünya bazarlarından seçilmiş premium aksesuarları — o cümlədən gaming klaviaturadan tutmuş yüksək performanslı siçanlara qədər — Azərbaycan bazarına daxil edir, həmçinin qiymət və keyfiyyət balansını qorumaq üçün sərfəli qiymət siyasəti tətbiq edir.
-Məhsullarımız yalnız texnoloji performans deyil, həm də estetik və davamlılıq baxımından da üstünlük təqdim edir. Voltec komandası, müasir texnologiya trendlərinə uyğun olaraq müştərilərin ehtiyaclarını öyrənməyə və onlara ən yaxşı xidməti verməyə öhdəlik çəkir. Gənclər və texnologiya həvəskarları üçün nəzərdə tutulmuş olan bu şirkət, Azərbaycanın texnoloji inkişafına töhfə vermək və yerli istehlakçılara beynəlxalq standartlara uyğun məhsullar təqdim etmək məqsədi daşıyır. Gələcəkdə genişlənmə planları da olan Voltec, müştəri məmnuniyyətini prioritet edir və daimi yeniliklərlə öz assortimentini zənginləşdirməyə davam edəcək.   </p>
+Məhsullarımız yalnız texnoloji performans deyil, həm də estetik və davamlılıq baxımından da üstünlük təqdim edir. Voltec komandası, müasir texnologiya trendlərinə uyğun olaraq müştərilərin ehtiyaclarını öyrənməyə və onlara ən yaxşı xidməti verməyə öhdəlik çəkir. Gənclər və texnologiya həvəskarları üçün nəzərdə tutulmuş olan bu şirkət, Azərbaycanın texnoloji inkişafına töhfə vermək və yerli istehlakçılara beynəlxalq standartlara uyğun məhsullar təqdim etmək məqsədi daşıyır. Gələcəkdə genişlənmə planları da olan Voltec, müştəri məmnuniyyətini prioritet edir və daimi yeniliklərlə öz assortimentini zənginləşdirməyə davam edəcək.</p>
     </section>
 
     <section id="contact" class="contact-section">
@@ -83,8 +82,29 @@ Məhsullarımız yalnız texnoloji performans deyil, həm də estetik və davaml
         <p>&copy; 2025 Voltec. All rights reserved.</p>
     </footer>
 
+    <!-- Ürün Detay Modal -->
+    <div id="product-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <div class="modal-gallery">
+                <img id="main-image" src="" alt="Product Image">
+                <div id="thumbnail-gallery" class="thumbnail-gallery"></div>
+            </div>
+            <div class="modal-video">
+                <video id="product-video" controls>
+                    <source id="video-source" src="" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+            <div class="modal-details">
+                <h3 id="modal-product-name"></h3>
+                <p id="modal-product-price"></p>
+                <p id="modal-product-description"></p>
+                <button id="add-to-cart-modal" class="add-to-cart">Səbətə Əlavə Et</button>
+            </div>
+        </div>
+    </div>
+
     <script src="script.js"></script>
 </body>
 </html>
-
-
