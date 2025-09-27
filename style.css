@@ -571,3 +571,273 @@ body.light-mode #theme-toggle-checkbox:not(:checked) + .toggle-label::before {
     content: '🌙'; /* Dark'a geçince ay (solda) */
     transform: translateX(0); /* Slider sola hareket */
 }
+
+.product-card {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: center;
+    margin: 10px;
+}
+.add-to-cart {
+    background-color: #ff8c00;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+/* Mevcut stilleriniz buraya eklenecek */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 1000;
+}
+
+.modal-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    width: 80%;
+    max-width: 800px;
+    max-height: 80vh;
+    overflow-y: auto;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.modal-gallery {
+    flex: 1;
+    min-width: 300px;
+}
+
+#main-image {
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+}
+
+.thumbnail-gallery {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.thumbnail-gallery img {
+    width: 60px;
+    height: 60px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.modal-video {
+    flex: 1;
+    min-width: 300px;
+}
+
+#product-video {
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+}
+
+.modal-details {
+    flex: 1;
+    min-width: 300px;
+    color: black;
+}
+
+.close-button {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 24px;
+    cursor: pointer;
+    color: #333;
+}
+
+.close-button:hover {
+    color: #ff8c00;
+}
+
+.add-to-cart {
+    background-color: #ff8c00;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.add-to-cart:hover {
+    background-color: #e07b00;
+}
+
+/* Mevcut stiller */
+.cart-section {
+    padding: 20px;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+#cart-items {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.cart-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #fff;
+}
+
+.cart-item span {
+    flex: 1;
+    margin-right: 10px;
+}
+
+.cart-description {
+    flex: 2;
+    margin: 5px 0;
+    color: #666;
+    white-space: pre-wrap; /* Alt alta görünüm için */
+}
+
+.remove-item {
+    background-color: #ff4444;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.remove-item:hover {
+    background-color: #cc0000;
+}
+
+#cart-total {
+    font-size: 1.2em;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+/* ... Önceki stiller aynı kalır ... */
+
+/* Modal stilleri */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 1000;
+    opacity: 1;
+    transition: opacity 0.3s ease-in-out; /* Kapanma animasyonu */
+}
+
+.modal.fade-out {
+    opacity: 0;
+}
+
+.modal-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    width: 80%;
+    max-width: 800px;
+    max-height: 80vh;
+    overflow-y: auto;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.modal-gallery {
+    flex: 1;
+    min-width: 300px;
+}
+
+#main-image {
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+}
+
+.thumbnail-gallery {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.thumbnail-gallery img {
+    width: 60px;
+    height: 60px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.modal-video {
+    flex: 1;
+    min-width: 300px;
+    margin-top: 40px; /* Video kısmını aşağı kaydırmak için */
+}
+
+#product-video {
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+}
+
+.modal-details {
+    flex: 1;
+    min-width: 300px;
+    color: black;
+}
+
+.close-button {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 24px;
+    cursor: pointer;
+    color: #ff8c00;;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 50%;
+    background-color: rgba(255, 68, 68, 0.1);
+    transition: transform 0.3s ease, background-color 0.3s ease, color 0.3s ease;
+    z-index: 1010; /* Butonu videonun üstüne çıkar */
+}
+
+.close-button:hover {
+    transform: rotate(90deg) scale(1.1); /* Animasyonlu dönüş ve büyüme */
+    background-color: rgba(76, 170, 18, 0.3);
+    color: #3ce009;
+}
+
+.close-button:active {
+    transform: scale(0.9); /* Tıklama efekti */
+}
+
+/* ... Geri kalan stiller aynı kalır ... */
